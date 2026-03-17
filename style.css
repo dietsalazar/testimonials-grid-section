@@ -11,7 +11,7 @@
     --grey-500: hsl(217, 19%, 35%);
     --dark-blue: hsl(219, 29%, 14%);
     --black: hsl(0, 0%, 7%);
-    --main-bg-color: hsl(0, 0, 96%);
+    --main-bg-color: hsl(0, 0%, 96%);
 }
 
 *,
@@ -23,10 +23,17 @@
 }
 
 body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-size: 13px;
     font-weight: 500;
     background-color: var(--main-bg-color);
+}
+
+main {
+    padding: 3rem 2rem;
 }
 
 h3 {
@@ -34,40 +41,50 @@ h3 {
     font-size: 1.5em;
 }
 
-main {
-    padding: 2rem;
+h4 {
+    font-weight: 600;
+}
+
+h4, p {
+    line-height: 1.5em;
 }
 
 img {
   max-width: 100%;
   height: auto; 
-  display: block;
+  object-fit: cover;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
 }
 
 .card-content {
+    grid-template-rows: auto auto 1fr;
     padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 20px 20px 20px 10px var(--grey-100);
+    display: grid;
+    gap: 1rem;
 }
 
 .card-author {
     display: flex;
     text-align: left;
+    align-items: center;
+    gap: 1rem;
 }
 
 .card-author img {
     border-radius: 50%;
     border: 2px solid;
+    max-width: 2.25rem;
+    max-height: 2.25rem;
 }
 
-.card-author p {
-    font-weight: 600;
-}
-
+/* Individual card styling */
 .card-1 {
     background-color: var(--purple-500);
     color: var(--purple-50);
@@ -77,5 +94,114 @@ img {
     border-color: var(--purple-300);
 }
 
-.attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+.card-2 {
+    background-color: var(--grey-500);
+    color: var(--grey-100);
+}
+
+.card-2 .card-author img {
+    border-color: var(--grey-100);
+}
+
+.card-3 {
+    background-color: var(--white);
+    color: var(--grey-500);
+}
+
+.card-3 .card-author img {
+    border-color: var(--grey-100);
+}
+
+.card-4 {
+    background-color: var(--dark-blue);
+    color: var(--grey-200);
+}
+
+.card-4 .card-author img {
+    border-color: var(--purple-500);
+}
+
+.card-5 {
+    background-color: var(--white);
+}
+
+.card-5 h4, .card-5 h3 {
+    color: var(--grey-500);
+}
+
+.card-5 span, .card-5 p {
+    color: var(--grey-400);
+}
+
+.card-5 .card-author img {
+    border-color: var(--grey-100);
+}
+
+/* Media Queries */
+
+@media (min-width: 40em) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-1 {
+        background-image: url('./images/bg-pattern-quotation.svg');
+        background-repeat: no-repeat;
+        background-position: top right 2rem;
+    }
+}
+
+@media (min-width: 62em) {
+    .cards {
+        max-width: 1200px;
+        margin: 5rem auto;
+        grid-template-columns: repeat(4, 1fr);
+        
+    }
+
+    .card-1 {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    }
+
+    .card-2 {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .card-3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .card-4 {
+        grid-column: 2 / 4;
+        grid-row: 2;
+    }
+
+    .card-5 {
+        grid-column: 4;
+        grid-row: 1 / 3;
+    }
+}
+
+/* Footer */
+
+.attribution { 
+    width: 100%;
+    font-size: 11px;
+    text-align: center;
+    background-color: var(--grey-500);
+    padding: 0.25em;
+    margin-top: auto;
+    color: var(--white);
+}
+
+.attribution a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.attribution a:hover {
+    color: var(--grey-400);
+}
